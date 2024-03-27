@@ -1,0 +1,8 @@
+.submitForm {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  width: 350px;
+  border: 2px solid black;
+  border-radius: 5px;
+}

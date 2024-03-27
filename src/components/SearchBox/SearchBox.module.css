@@ -1,0 +1,6 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+  width: 373px;
+  margin-top: 20px;
+}
