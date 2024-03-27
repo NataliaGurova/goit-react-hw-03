@@ -85,7 +85,7 @@ App, ContactForm, SearchBox, ContactList, Contact
  <SearchBox onSearch={handleSearch} />
 
 
- 
+
  return (
     <div className={css.contact}>
       <label htmlFor={id} >Find contacts by name</label>
@@ -93,3 +93,9 @@ App, ContactForm, SearchBox, ContactList, Contact
       <p>{inputValue}</p>
     </div>
   );
+
+
+  onContact({
+      login: login.value,
+      password: number.value,
+    });

@@ -15,7 +15,6 @@ const SearchBox = () => {
     <div className={css.contact}>
       <label>Find contacts by name</label>
       <input type="text"/>
-      <p>inputValue</p>
     </div>
   );
 };

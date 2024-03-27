@@ -1,20 +1,19 @@
 
-import { useId } from "react";
+// import { useId } from "react";
 import css from "./ContactForm.module.css"
 
-const ContactForm = ({ onLogin }) => {
-  const loginId = useId();
-  const passwordId = useId();
+const ContactForm = ({ onContact }) => {
+  // const loginId = useId();
+  // const passwordId = useId();
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(evt);
-    const form = evt.target;
-    const { login, number } = form.elements;
+    console.log(evt)
 
-    // Викликаємо пропс onLogin
-    onLogin({
-      login: login.value,
-      password: number.value,
+    // Викликаємо пропс onContact
+    onContact({
+      id: Date.now(),
+      name: evt.target.elements.login.value,
+      number: evt.target.elements.number.value,
     });
 
     form.reset();
@@ -22,9 +21,9 @@ const ContactForm = ({ onLogin }) => {
 
   return (
     <form onSubmit={handleSubmit} className={css.submitForm}>
-      <label htmlFor={loginId}>Name</label>
+      <label>Name</label>
       <input type="text" name="login" />
-      <label htmlFor={passwordId}>Number</label>
+      <label>Number</label>
       <input type="number" name="number" />
       <button type="submit">Add contact</button>
     </form>
