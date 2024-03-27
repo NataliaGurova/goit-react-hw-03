@@ -1,6 +1,4 @@
 
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import { useState } from 'react'
 import './App.css'
 import ContactForm from "./components/ContactForm/ContactForm"
@@ -9,8 +7,10 @@ import ContactList from "./components/ContactList/ContactList"
 import initialContacts from './data/contacts.json'
 
 function App() {
-  const [contacts, setContacts] = useState(initialContacts)
-  console.log(contacts);
+  
+  const [contacts, setContacts] = useState(initialContacts);
+  const [filterName, setFilterName] = useState("");
+
   // Колбек-функція для обробки ContactForm сабміту форми
   const addContact = (newContact) => {
     setContacts((prevContact) => {
@@ -19,28 +19,26 @@ function App() {
       newContact
       ])
     })
-    // Виконуємо необхідні операції з ContactForm даними
-    console.log(newContact);
   };
 
   const deleteContact = (contactId) => {
     setContacts((prevContact) => {
       return prevContact.filter((contact) => contact.id !== contactId);
     })
-console.log(contactId);
   }
+
+  const visibleContacts = contacts.filter(contact => {
+    return contact.name.toLowerCase().includes(filterName.toLowerCase())
+  })
+
 
   return (
     <div>
       <h1>Phonebook</h1>
-      <div>
-
       {/* Передаємо колбек як пропс форми */}
       <ContactForm onContact={addContact} />
-      </div>
-
-      <SearchBox />
-      <ContactList contacts={contacts} onDelete={deleteContact} />
+      <SearchBox value={filterName} onFilter={setFilterName} />
+      <ContactList contacts={visibleContacts} onDelete={deleteContact} />
 </div>
   )
 }
