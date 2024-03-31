@@ -6,3 +6,29 @@
   border: 2px solid black;
   border-radius: 5px;
 }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  margin: 0 auto;
+  margin-top: 10px; 
+}
+
+.error {
+  color: red;
+  font-size: small;
+}
+
+label {
+  font-size: 15px;
+}
+
+.numberLabel {
+  margin-top: 10px;
+}
+
+.userName, .numberName {
+  padding: 5px 10px;
+      font-size: 20px;
+}

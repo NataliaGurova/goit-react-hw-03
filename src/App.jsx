@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import ContactForm from "./components/ContactForm/ContactForm"
 import SearchBox from "./components/SearchBox/SearchBox"
@@ -8,8 +8,16 @@ import initialContacts from './data/contacts.json'
 
 function App() {
   
-  const [contacts, setContacts] = useState(initialContacts);
+  const [contacts, setContacts] = useState(() => {
+    const savedContacts = JSON.parse(localStorage.getItem("newContacts"));
+    return savedContacts || initialContacts;
+  });
+  
   const [filterName, setFilterName] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("newContacts", JSON.stringify(contacts));
+  }, [contacts]);
 
   // Колбек-функція для обробки ContactForm сабміту форми
   const addContact = (newContact) => {
@@ -35,11 +43,10 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      {/* Передаємо колбек як пропс форми */}
       <ContactForm onContact={addContact} />
       <SearchBox value={filterName} onFilter={setFilterName} />
       <ContactList contacts={visibleContacts} onDelete={deleteContact} />
-</div>
+    </div>
   )
 }
 
