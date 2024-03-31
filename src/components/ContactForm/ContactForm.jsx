@@ -12,9 +12,9 @@ const initialValues = {
 };
 
 const FormSchema = Yup.object().shape({
-  name: Yup.string().trim().min(3).max(50).required(),
+  name: Yup.string().trim().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
 	number: Yup.string()
-    .matches(/^\+?[ ()0-9-]+$/, "Invalid phone number").min(3).max(12).required(),
+    .matches(/^\+?[ ()0-9-]+$/, "Invalid phone number").min(3, "Too Short!").max(50, "Too Long!").required("Required"),
 });
 
 const ContactForm = ({onContact}) => {
